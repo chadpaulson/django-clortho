@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+    <title>django-clortho example</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+</head>
+<body>    
+
+{% if user.is_authenticated %}
+Hello {{ user.username }} <a href="/logout/" onclick="FB.logout();">Sign Out</a>
+{% else %}
+<fb:login-button length="long" size="small" perms="email"></fb:login-button>
+{% endif %}
+
+<div id="fb-root"></div>
+<script src="http://connect.facebook.net/en_US/all.js" type="text/javascript"></script>
+<script>
+// fill out your app id
+var FB_APP_ID = 'value_here';
+FB.init({appId: FB_APP_ID, status: true, cookie: true, xfbml: true});
+FB.Event.subscribe('auth.login', function(response) {
+    window.location = '/clortho/on-facebook-authentication/';
+});
+</script>
+</body>
+</html>
