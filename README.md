@@ -1,3 +1,5 @@
+[![](http://farm5.static.flickr.com/4012/4567211957_8100b745d3_o.jpg)](http://farm5.static.flickr.com/4012/4567211957_8100b745d3_o.jpg)
+
 INSTALL:
 =======
 
@@ -27,19 +29,23 @@ INSTALL:
 
     CLORTHO_AUTH_REDIRECT = 'home' #name of url to redirect to after authentication
 
- 7. Follow the included file `example_template.txt`.  Don't forget to set the javascript variable FB_APP_ID, as it should match the value of FACEBOOK_APP_ID you filled out earlier in settings.py.  Future versions of django-clortho will contain a more simple and clean way of integrating the javascript and markup necessary.  Please consult the [Facebook Developer documentation][1] for help on specifics.
+ 7. Follow the included file `example_template.txt`.  Be sure to set the javascript variable FB_APP_ID, as it should match the value of FACEBOOK_APP_ID you filled out earlier in settings.py.  Future versions of django-clortho will contain a more simple and clean way of integrating the necessary javascript and markup.  Please consult the [Facebook Developer documentation][1] for help.
+
+ 8. Once you have integrated your login and logout methods based on the above example, please run the following command in your projects base directory. After restarting your server, `django-clortho` will be available to use.
+
+    python manage.py syncdb
 
 TODO:
 =====
 
-  - Add template tags for social widgets and auth.
+  - Add template tags for social plugins and auth.
   - Add convenience methods to model for easy API lookups.
   - Add methods to allow existing users to connect via FB.
 
 Motivation
 ========
 
-This project came to be while I started rewriting my 14 year old Ghostbusters fan site in Python.  I wanted a simple pluggable app to tie into the latest Facebook and Twitter APIs and authentication schemes.  Named after Vinz Clortho, keymaster of Gozer, `django-clortho` will eventually provide OAuth 2.0-based authentication backends to Facebook Graph API and Twitter @Anywhere.
+This project came to be while I started rewriting my 14 year old Ghostbusters fan site in Python.  I wanted a simple pluggable app to tie into the latest Facebook and Twitter APIs and authentication schemes.  Named after Vinz Clortho, Keymaster of Gozer, `django-clortho` will eventually provide OAuth 2.0-based authentication backends to Facebook Graph API and Twitter @Anywhere.
 
 
   [1]: http://developers.facebook.com
