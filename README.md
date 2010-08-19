@@ -9,7 +9,8 @@ INSTALL:
 
  3. Add `'clortho'` to INSTALLED_APPS in settings.py
 
- 4. Add `'clortho.auth_backends.FacebookBackend'` to AUTHENTICATION_BACKENDS in settings.py.
+ 4. Add `'clortho.auth_backends.FacebookBackend'` to AUTHENTICATION_BACKENDS in 
+    settings.py.
 
  5. Add the following entry to your project-level urls.py
 
@@ -34,11 +35,13 @@ INSTALL:
     javascript variable FB_APP_ID (or use the FACEBOOK_APP_ID global context
     variable), as it should match the value of FACEBOOK_APP_ID you filled out 
     earlier in settings.py.  Future versions of 
-    django-clortho will contain a more simple and clean way of integrating the 
+    `django-clortho` will contain a more simple and clean way of integrating the 
     necessary javascript and markup. Please consult the 
     [Facebook Developer documentation][1] for help.
 
- 8. Once you have integrated your login and logout methods based on the above example, please run the following command in your projects base directory. After restarting your server, `django-clortho` will be available to use.
+ 8. Once you have integrated your login and logout methods based on the above 
+    example, please run the following command in your projects base directory.
+    After restarting your server, `django-clortho` will be available to use.
 
         python manage.py syncdb
 
@@ -52,8 +55,12 @@ TODO:
 Motivation
 ----------
 
-This project came to be while I started rewriting my 14 year old Ghostbusters fan site in Python.  I wanted a simple pluggable app to tie into the latest Facebook and Twitter APIs and authentication schemes.  Named after Vinz Clortho, Keymaster of Gozer, `django-clortho` will eventually provide OAuth 2.0-based authentication backends to Facebook Graph API and Twitter @Anywhere.
-
+This project came to be while I started rewriting my 14 year old Ghostbusters 
+fan site in Python.  I wanted a simple pluggable app to tie into the latest 
+Facebook and Twitter APIs and authentication schemes.  Named after 
+Vinz Clortho, Keymaster of Gozer, `django-clortho` will eventually provide 
+OAuth 2.0-based authentication backends to Facebook Graph API and Twitter 
+@Anywhere.
 
   [1]: http://developers.facebook.com
   [2]: http://github.com/facebook/python-sdk
