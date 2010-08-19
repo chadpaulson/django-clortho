@@ -18,9 +18,6 @@ INSTALL:
 
  6. Add the following settings to settings.py
 
-
-    FACEBOOK_API_KEY = 'value_here' #facebook app api key
-
     FACEBOOK_SECRET_KEY = 'value_here' #facebook app secret key
 
     FACEBOOK_APP_ID = 'value_here' #facebook app id
