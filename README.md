@@ -7,24 +7,24 @@ INSTALL:
 
  2. Drop 'clortho' into your django project.
 
- 3. Add 'clortho' to INSTALLED_APPS in settings.py
+ 3. Add `'clortho'` to INSTALLED_APPS in settings.py
 
- 4. Add 'clortho.auth_backends.FacebookBackend' to AUTHENTICATION_BACKENDS in settings.py.
+ 4. Add `'clortho.auth_backends.FacebookBackend'` to AUTHENTICATION_BACKENDS in settings.py.
 
  5. Add the following entry to your project-level urls.py
 
-    url(r'^clortho/', include('clortho.urls')),
-
+    `url(r'^clortho/', include('clortho.urls')),`
 
  6. Add the following settings to settings.py
 
-    FACEBOOK_SECRET_KEY = 'value_here' #facebook app secret key
-
-    FACEBOOK_APP_ID = 'value_here' #facebook app id
-
-    FACEBOOK_USER_NAMESPACE = 'fb-' #will serve as username prefix
-
-    CLORTHO_AUTH_REDIRECT = 'home' #name of url to redirect to after authentication
+        # Facebook app secret key.
+        FACEBOOK_SECRET_KEY = 'value_here'
+        # Facebook app id.
+        FACEBOOK_APP_ID = 'value_here'
+        # Will serve as username prefix.
+        FACEBOOK_USER_NAMESPACE = 'fb-'
+        # Name of url to redirect to after authentication. 
+        CLORTHO_AUTH_REDIRECT = 'home' 
   
  7. Optionally, add 'clortho.context_processors.facebook_api_values' to your
     TEMPLATE_CONTEXT_PROCESSORS if you'd like a global FACEBOOK_APP_ID context
@@ -40,7 +40,7 @@ INSTALL:
 
  8. Once you have integrated your login and logout methods based on the above example, please run the following command in your projects base directory. After restarting your server, `django-clortho` will be available to use.
 
-    python manage.py syncdb
+        python manage.py syncdb
 
 TODO:
 -----
