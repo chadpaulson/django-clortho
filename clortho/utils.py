@@ -16,6 +16,6 @@ def get_graph(request):
                                          APP_ID, 
                                          SECRET_KEY)
     if user:
-        return facebook.GraphAPI(user["oauth_access_token"])
+        return facebook.GraphAPI(user["access_token"])
     else:
         return None
