@@ -12,7 +12,7 @@ def get_graph(request):
     Returns a complete facebook.GraphAPI object for querying.
     Returns None if Facebook cookie credentials can't be found.
     """
-    user = facebook.get_user_from_cookie(reqest.cookies, 
+    user = facebook.get_user_from_cookie(request.cookies, 
                                          APP_ID, 
                                          SECRET_KEY)
     if access_token:
