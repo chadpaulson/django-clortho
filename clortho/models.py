@@ -2,6 +2,10 @@ from django.contrib.auth.models import User
 from django.db import models
 
 class Facebook(models.Model):
+    """
+    Facebook profile model for a User. Stores a few important details about
+    their Facebook account, and has some convenience methods.
+    """
     user = models.ForeignKey(User, related_name='facebook')
     uid = models.CharField(max_length=20, unique=True)
     url = models.URLField(blank=True, null=True)
