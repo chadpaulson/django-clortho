@@ -15,7 +15,7 @@ def get_graph(request):
     user = facebook.get_user_from_cookie(request.COOKIES, 
                                          APP_ID, 
                                          SECRET_KEY)
-    if access_token:
+    if user:
         return facebook.GraphAPI(user["oauth_access_token"])
     else:
         return None
