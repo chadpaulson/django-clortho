@@ -10,9 +10,17 @@ from django.contrib import messages
 import facebook
 
 def on_facebook_authentication(request):
+    """
+    View for logging the user into Facebook.
+    
+    GET keys:
+      * next: The URL to redirect to after authenticating.
+    """
     APP_ID = settings.FACEBOOK_APP_ID
     SECRET_KEY = settings.FACEBOOK_SECRET_KEY
-    VIEW = settings.CLORTHO_AUTH_REDIRECT
+    
+    next_url = request.GET.get('next', settings.CLORTHO_AUTH_REDIRECT)
+    
     access_token = False
     if 'fbs_' + APP_ID in request.COOKIES:
         access_token = facebook.get_user_from_cookie(request.COOKIES, APP_ID, SECRET_KEY)
@@ -23,8 +31,8 @@ def on_facebook_authentication(request):
                 login(request, user)
                 # Pump this to the User for display on the UI.
                 messages.info(request, 'You have logged in.')
-                return HttpResponseRedirect(reverse(VIEW))
+                return HttpResponseRedirect(reverse(next_url))
                 
         del request.COOKIES['fbs_' + APP_ID]
         
-    return HttpResponseRedirect(reverse(VIEW))
+    return HttpResponseRedirect(reverse(next_url))
