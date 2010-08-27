@@ -1,4 +1,5 @@
 import facebook
+from django.conf import settings
 
 APP_ID = settings.FACEBOOK_APP_ID
 SECRET_KEY = settings.FACEBOOK_SECRET_KEY
