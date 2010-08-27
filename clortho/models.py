@@ -6,6 +6,15 @@ class Facebook(models.Model):
     uid = models.CharField(max_length=20, unique=True)
     url = models.URLField(blank=True, null=True)
     
+    def get_picture_url(self, size="small"):
+        """
+        Returns the URL for this user's profile picture.
+        
+        square (50x50), small (50xVar), large (200xVar)
+        """
+        return "http://graph.facebook.com/%s/picture?type=%s" % (self.uid, 
+                                                                 size)
+    
     class Meta:
         verbose_name = "Facebook User"
         verbose_name_plural = "Facebook Users"
