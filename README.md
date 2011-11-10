@@ -3,9 +3,9 @@
 INSTALL:
 --------
 
- 1. Install [facebook/python-sdk][2].
+ 1. `python setup.py install` or [add][3] the repository to your pip requirements file.
 
- 2. Drop 'clortho' into your django project.
+ 2. Install [facebook/python-sdk][2].
 
  3. Add `'clortho'` to INSTALLED_APPS in settings.py
 
@@ -48,9 +48,9 @@ INSTALL:
 TODO:
 -----
 
-  - Add template tags for social plugins and auth.
+  - Add other social backends (Twitter, Google Oauth2, Yahoo OpenID, etc.)
   - Add convenience methods to model for easy API lookups.
-  - Add methods to allow existing users to connect via FB.
+  - Add methods to allow existing users to connect with various services.
 
 Motivation
 ----------
@@ -59,8 +59,8 @@ This project came to be while I started rewriting my 14 year old Ghostbusters
 fan site in Python.  I wanted a simple pluggable app to tie into the latest 
 Facebook and Twitter APIs and authentication schemes.  Named after 
 Vinz Clortho, Keymaster of Gozer, `django-clortho` will eventually provide 
-OAuth 2.0-based authentication backends to Facebook Graph API and Twitter 
-@Anywhere.
+OAuth 2.0-based authentication backends to Facebook Graph API and Twitter Oauth, among others.
 
   [1]: http://developers.facebook.com
   [2]: http://github.com/facebook/python-sdk
+  [3]: http://www.pip-installer.org/en/latest/requirement-format.html#git

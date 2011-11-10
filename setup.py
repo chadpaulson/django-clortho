@@ -1,11 +1,11 @@
 from distutils.core import setup
-import athumb
+import clortho
 
 long_description = open('README.md').read()
 
 setup(
     name='django-clortho',
-    version=athumb.VERSION,
+    version=clortho.VERSION,
     packages=['clortho'],
     description='A Django authentication backend for Facebook via Open Graph.',
     author='Chad Paulson',
