@@ -38,6 +38,7 @@ def facebook_login_complete(request):
     """
     graph = get_facebook_graph(request)
     if graph:
+        
         me = graph.get_object('me')
         user = authenticate(service='facebook', key=me['id'])
 
@@ -45,11 +46,13 @@ def facebook_login_complete(request):
             
             # TODO handle auto-association by email
             
+            request.session['clortho_facebook_access_token'] = graph.access_token
             return HttpResponseRedirect(reverse(settings.CLORTHO_ASSOCIATE_URL))
 
-        login(request,user)    
-    
+        login(request,user)
+
         next_url = request.session.get('facebook_login_next', settings.CLORTHO_AUTH_REDIRECT)
         return HttpResponseRedirect(reverse(next_url))
+
     
     return HttpResponse(reverse(settings.CLORTHO_AUTH_ERROR))
