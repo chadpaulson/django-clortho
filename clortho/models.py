@@ -28,7 +28,7 @@ class Keymaster(models.Model):
         verbose_name_plural = 'Clortho User Associations'
     
     def __unicode__(self):
-        return u'%s\'s %s Service' % (self.user.username, SERVICES[self.service][1])
+        return u'%s\'s %s Service' % (self.user.username, self.service)
         
     def get_avatar(self, size='small'):
         """

@@ -12,7 +12,8 @@ from django.contrib import messages
 
 import facebook
 from utils import get_facebook_graph
-from settings import FACEBOOK_APP_ID, FACEBOOK_SECRET_KEY, FACEBOOK_USER_NAMESPACE
+from models import ClorthoUser, Keymaster
+from settings import FACEBOOK_APP_ID, FACEBOOK_SECRET_KEY
 
 
 
@@ -26,9 +27,9 @@ def facebook_login(request):
     url = 'https://graph.facebook.com/oauth/authorize?' + urlencode({
         'client_id': FACEBOOK_APP_ID,
         'redirect_uri': request.build_absolute_uri(reverse('clortho_facebook_login_complete')),
-        'scope': 'email', # TODO: make extended permissions an app setting
+        'scope': getattr(settings, 'FACEBOOK_EXTENDED_PERMISSIONS',''),
     })
-    
+        
     return HttpResponseRedirect(url)
 
 
@@ -43,16 +44,28 @@ def facebook_login_complete(request):
         user = authenticate(service='facebook', key=me['id'])
 
         if not user:
-            
-            # TODO handle auto-association by email
-            
+            try:
+                if 'email' in settings.FACEBOOK_EXTENDED_PERMISSIONS.split(','):
+                    u = ClorthoUser.objects.get(email=me['email'])
+                    Keymaster(user=u,service='facebook',key=me['id']).save()
+                    user = authenticate(service='facebook', key=me['id'])
+            except:
+                user = None
+
+
+        if not user:
             request.session['clortho_facebook_access_token'] = graph.access_token
             return HttpResponseRedirect(reverse(settings.CLORTHO_ASSOCIATE_URL))
 
+
         login(request,user)
 
-        next_url = request.session.get('facebook_login_next', settings.CLORTHO_AUTH_REDIRECT)
-        return HttpResponseRedirect(reverse(next_url))
+        try:
+            next_url = reverse(request.session.get('facebook_login_next', settings.CLORTHO_AUTH_REDIRECT))
+        except:
+            next_url = getattr(settings, 'LOGIN_REDIRECT_URL', '/')
+            
+        return HttpResponseRedirect(next_url)
 
     
     return HttpResponse(reverse(settings.CLORTHO_AUTH_ERROR))
