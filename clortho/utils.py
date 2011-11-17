@@ -1,21 +1,43 @@
 import facebook
+import urllib2
+from urllib import urlencode
+from urlparse import urlparse
+from datetime import datetime
+
+
 from django.conf import settings
+from django.core.urlresolvers import reverse
 
-APP_ID = settings.FACEBOOK_APP_ID
-SECRET_KEY = settings.FACEBOOK_SECRET_KEY
-NS = settings.FACEBOOK_USER_NAMESPACE
 
-def get_graph(request):
+from settings import FACEBOOK_APP_ID, FACEBOOK_SECRET_KEY
+
+
+def get_facebook_graph(request):
     """
-    Shortcut for instantiating a facebook.GraphAPI object.
+    Parses initial auth response and returns Facebook Graph Object
     
-    Returns a complete facebook.GraphAPI object for querying.
-    Returns None if Facebook cookie credentials can't be found.
+    Returns a facebook authorization token for accessing the GraphAPI.
+    Returns None if authorization has failed.
     """
-    user = facebook.get_user_from_cookie(request.COOKIES, 
-                                         APP_ID, 
-                                         SECRET_KEY)
-    if user:
-        return facebook.GraphAPI(user["access_token"])
-    else:
-        return None
+    
+    fbuser = facebook.get_user_from_cookie(request.COOKIES,FACEBOOK_APP_ID, FACEBOOK_SECRET_KEY)
+            
+    if fbuser and fbuser.get('access_token') and datetime.fromtimestamp(float(fbuser.get('expires'))) > datetime.now():
+        return facebook.GraphAPI(fbuser['access_token'])
+    else:            
+        url = 'https://graph.facebook.com/oauth/access_token?' + urlencode({
+            'client_id': FACEBOOK_APP_ID,
+            'client_secret': FACEBOOK_SECRET_KEY,
+            'redirect_uri': request.build_absolute_uri(reverse('clortho_facebook_login_complete')),
+            'code': request.GET.get('code'),
+        })
+        
+        response =  urlparse(urllib2.urlopen(url).read())
+        params = dict([part.split('=') for part in response[2].split('&')])
+        
+        if not params.get('access_token'):
+            return None
+        else:
+            return facebook.GraphAPI(params.get('access_token'))
+
+
