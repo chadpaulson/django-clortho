@@ -30,7 +30,7 @@ class Keymaster(models.Model):
     def __unicode__(self):
         return u'%s\'s %s Service' % (self.user.username, self.service)
         
-    def get_avatar(self, size='small'):
+    def get_avatar(self, size='square'):
         """
         Returns the URL of the user's avatar.
         
