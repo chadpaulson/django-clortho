@@ -1,6 +1,6 @@
 from django.conf import settings
 
-def facebook_api_values(request):
+def facebook(request):
     """
     Returns common context stuff for use in HTML templates.
     """

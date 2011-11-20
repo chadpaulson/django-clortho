@@ -27,9 +27,8 @@ INSTALL:
         # Name of url to redirect to after authentication. 
         CLORTHO_AUTH_REDIRECT = 'home' 
   
- 7. Optionally, add 'clortho.context_processors.facebook_api_values' to your
-    TEMPLATE_CONTEXT_PROCESSORS if you'd like a global FACEBOOK_APP_ID context
-    variable for your Facebook JS.
+ 7. Optionally, add 'clortho.context_processors.facebook' to your
+    TEMPLATE_CONTEXT_PROCESSORS.
 
  7. Follow the included file `example_template.txt`.  Be sure to set the 
     javascript variable FB_APP_ID (or use the FACEBOOK_APP_ID global context

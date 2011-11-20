@@ -22,7 +22,9 @@ def facebook_login(request):
     Redirects user to Facebook authorization screen.
     """
     if request.GET.get('next'):
-        request.session['facebook_login_next'] = request.GET.get('next')
+        request.session['next_url'] = request.GET.get('next')
+    else:
+        request.session['next_url'] = getattr(settings, 'LOGIN_REDIRECT_URL', '/')
         
     url = 'https://graph.facebook.com/oauth/authorize?' + urlencode({
         'client_id': FACEBOOK_APP_ID,
@@ -61,11 +63,14 @@ def facebook_login_complete(request):
         login(request,user)
 
         try:
-            next_url = reverse(request.session.get('facebook_login_next', settings.CLORTHO_AUTH_REDIRECT))
+            next_url = request.session['next_url']
+            request.session['next_url'] = None
         except:
             next_url = getattr(settings, 'LOGIN_REDIRECT_URL', '/')
             
         return HttpResponseRedirect(next_url)
 
-    
-    return HttpResponse(reverse(settings.CLORTHO_AUTH_ERROR))
+
+    error_url = getattr(settings, 'CLORTHO_AUTH_ERROR', '/')
+        
+    return HttpResponse(error_url)
