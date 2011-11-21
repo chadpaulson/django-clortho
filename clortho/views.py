@@ -39,9 +39,14 @@ def facebook_login_complete(request):
     """
     Handles Facebook authorization callback.
     """
-    graph = get_facebook_graph(request)
-    if graph:
+    
+    if request.GET.get('error'):
+        return HttpResponseRedirect(getattr(settings, 'LOGIN_URL', '/'))
+    else:
+        graph = get_facebook_graph(request)
         
+    if graph:
+                
         me = graph.get_object('me')
         user = authenticate(service='facebook', key=me['id'])
 
