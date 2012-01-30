@@ -9,7 +9,7 @@ INSTALL:
 
  3. Add `'clortho'` to INSTALLED_APPS in settings.py
 
- 4. Add `'clortho.auth_backends.FacebookBackend'` to AUTHENTICATION_BACKENDS in 
+ 4. Add `'clortho.auth_backends.ClorthoBackend'` to AUTHENTICATION_BACKENDS in 
     settings.py.
 
  5. Add the following entry to your project-level urls.py
@@ -26,6 +26,8 @@ INSTALL:
         FACEBOOK_USER_NAMESPACE = 'fb-'
         # Name of url to redirect to after authentication. 
         CLORTHO_AUTH_REDIRECT = 'home' 
+        # Extended Permissions
+        FACEBOOK_EXTENDED_PERMISSIONS = ''
   
  7. Optionally, add 'clortho.context_processors.facebook' to your
     TEMPLATE_CONTEXT_PROCESSORS.
