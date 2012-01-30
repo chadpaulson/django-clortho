@@ -6,7 +6,6 @@ from django.contrib.auth.backends import ModelBackend
 
 
 from clortho.models import Keymaster, ClorthoUser
-import facebook
 
 
 class ClorthoBackend(ModelBackend):
