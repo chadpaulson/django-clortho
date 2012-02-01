@@ -7,16 +7,16 @@ INSTALL:
 
  2. Install [facebook/python-sdk][2].
 
- 3. Add `'clortho'` to INSTALLED_APPS in settings.py
+ 3. Add `'clortho'` to INSTALLED_APPS in settings.py.
 
  4. Add `'clortho.auth_backends.ClorthoBackend'` to AUTHENTICATION_BACKENDS in 
     settings.py.
 
- 5. Add the following entry to your project-level urls.py
+ 5. Add the following entry to your project-level urls.py.
 
     `url(r'^clortho/', include('clortho.urls')),`
 
- 6. Add the following settings to settings.py
+ 6. Add the following settings to settings.py.
 
         # Facebook app secret key.
         FACEBOOK_SECRET_KEY = 'value_here'
@@ -32,19 +32,17 @@ INSTALL:
  7. Optionally, add 'clortho.context_processors.facebook' to your
     TEMPLATE_CONTEXT_PROCESSORS.
 
- 7. Follow the included file `example_template.txt`.  Be sure to set the 
-    javascript variable FB_APP_ID (or use the FACEBOOK_APP_ID global context
-    variable), as it should match the value of FACEBOOK_APP_ID you filled out 
-    earlier in settings.py.  Future versions of 
-    `django-clortho` will contain a more simple and clean way of integrating the 
-    necessary javascript and markup. Please consult the 
-    [Facebook Developer documentation][1] for help.
-
- 8. Once you have integrated your login and logout methods based on the above 
-    example, please run the following command in your projects base directory.
-    After restarting your server, `django-clortho` will be available to use.
+ 8. Sync your database.
 
         python manage.py syncdb
+
+OPTIONAL SETTINGS:
+------------------
+
+`CLORTHO_ASSOCIATE_USER` Boolean
+
+        This setting tells clortho if it should automatically associate an existing application user when the email address is available in the social context.
+
 
 TODO:
 -----
