@@ -48,11 +48,12 @@ def facebook_login_complete(request):
     if graph:
         me = graph.get_object('me')
         user = authenticate(service='facebook', key=me['id'])
-        extended_perms = settings.FACEBOOK_EXTENDED_PERMISSIONS
+        perms = getattr(settings, 'FACEBOOK_EXTENDED_PERMISSIONS', '')
+        associate_user = getattr(settings, 'CLORTHO_ASSOCIATE_BY_EMAIL', False)
 
         if not user:
             try:
-                if 'email' in extended_perms.split(','):
+                if 'email' in perms.split(',') and associate_via_email:
                     u = ClorthoUser.objects.get(email=me['email'])
                     Keymaster(user=u, service='facebook', key=me['id']).save()
                     user = authenticate(service='facebook', key=me['id'])
