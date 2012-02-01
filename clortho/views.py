@@ -10,7 +10,6 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 
 
-import facebook
 from utils import auth_facebook
 from models import ClorthoUser, Keymaster
 from settings import FACEBOOK_APP_ID, FACEBOOK_SECRET_KEY
