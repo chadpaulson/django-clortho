@@ -46,3 +46,19 @@ def auth_facebook(request):
         else:
             return facebook.GraphAPI(params.get('access_token'))
 
+
+def get_facebook_graph(request):
+    """
+    Retrieves Facebook graph object for a given auth token.
+    """
+
+    try:
+        token = request.session['clortho_fb_access_token']
+    except:
+        token = None
+
+    try:
+        graph = facebook.GraphAPI(token)
+        return graph
+    except:
+        raise
