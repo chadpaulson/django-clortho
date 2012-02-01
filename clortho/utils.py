@@ -12,7 +12,7 @@ from django.core.urlresolvers import reverse
 from settings import FACEBOOK_APP_ID, FACEBOOK_SECRET_KEY
 
 
-def get_facebook_graph(request):
+def auth_facebook(request):
     """
     Parses initial auth response and returns Facebook Graph Object
 
@@ -45,3 +45,4 @@ def get_facebook_graph(request):
             return None
         else:
             return facebook.GraphAPI(params.get('access_token'))
+

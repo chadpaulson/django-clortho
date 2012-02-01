@@ -11,7 +11,7 @@ from django.contrib import messages
 
 
 import facebook
-from utils import get_facebook_graph
+from utils import auth_facebook
 from models import ClorthoUser, Keymaster
 from settings import FACEBOOK_APP_ID, FACEBOOK_SECRET_KEY
 
@@ -44,7 +44,7 @@ def facebook_login_complete(request):
     if request.GET.get('error'):
         return HttpResponseRedirect(getattr(settings, 'LOGIN_URL', '/'))
     else:
-        graph = get_facebook_graph(request)
+        graph = auth_facebook(request)
 
     if graph:
         me = graph.get_object('me')
