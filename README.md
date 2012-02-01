@@ -39,9 +39,11 @@ INSTALL:
 OPTIONAL SETTINGS:
 ------------------
 
-`CLORTHO_ASSOCIATE_USER` Boolean
+`CLORTHO_ASSOCIATE_BY_EMAIL` Boolean
 
-        This setting tells clortho if it should automatically associate an existing application user when the email address is available in the social context.
+        This setting tells clortho if it should automatically associate an
+        existing application user when the email address is available in the
+        social context.
 
 
 TODO:
