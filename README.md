@@ -1,4 +1,10 @@
-[![](http://farm5.static.flickr.com/4012/4567211957_8100b745d3_o.jpg)](http://farm5.static.flickr.com/4012/4567211957_8100b745d3_o.jpg)
+![](https://raw.githubusercontent.com/chadpaulson/django-clortho/master/django_clortho.jpg)
+
+## Deprecated. Please use Django Social Auth
+
+```
+pip install django-social-auth
+```
 
 INSTALL:
 --------
